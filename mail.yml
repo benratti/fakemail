@@ -1,0 +1,32 @@
+version: '2'
+services:
+  fakemail-server: 
+    image: greenmail/standalone:1.5.2
+    container_name: fakemail-server
+    ports:
+      - "3110:3110"
+      - "3025:3025"
+      - "3143:3143"
+    networks:
+      fakemail:
+        aliases:
+          - smtp.fakemail.fr
+          - imap.fakemail.fr
+
+  webmail-server:
+    image: afterlogic/docker-webmail-lite
+    container_name: webmail-server
+    volumes:
+      - ./webmail-setting.xml:/var/www/html/data/settings/settings.xml:rw
+    ports:
+      - "80:80"
+    networks:
+      fakemail:
+        aliases:
+          - webmail.castore.fr
+
+networks:
+  fakemail:
+    driver: bridge
+
+
