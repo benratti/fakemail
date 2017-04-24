@@ -1,5 +1,7 @@
 # fakemail
 
+## Service
+
 Service | Port
 --- | ---
 SMTP | 3025
@@ -10,3 +12,7 @@ POP3 | 3110
 POP3S | 3995
 WEBMAIL | 80
 
+
+## Start
+
+> docker-compose -f mail.yml up
